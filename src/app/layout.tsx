@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { WalletContextProvider } from "../context/WalletContext";
+import "./globals.css"
 
 export const metadata:Metadata = {
   title: "Donatverse",
