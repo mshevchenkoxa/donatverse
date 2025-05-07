@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
-import styles from './GetLinkButton.module.css';
+import styles from './GetLinkButton.module.css'; 
 
 const GetLinkButton: React.FC = () => {
   const { publicKey } = useWallet();
@@ -10,7 +10,7 @@ const GetLinkButton: React.FC = () => {
   useEffect(() => {
     if (publicKey) {
       const walletAddress = publicKey.toBase58();
-      setDonationLink(`https://donatverse.com/donate?wallet=${walletAddress}`);
+      setDonationLink(`http://localhost:3000/donate?wallet=${walletAddress}`);
     } else {
       setDonationLink(null);
     }
@@ -26,18 +26,18 @@ const GetLinkButton: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Ваше персональне посилання для донатів:</h2>
+      <h2 className={styles.title}>Your personal donation link:</h2>
       {donationLink ? (
         <>
           <div className={styles.linkBox}>
             <p className={styles.link}>{donationLink}</p>
             <button className={styles.copyButton} onClick={handleCopyClick}>
-              {copied ? 'Скопійовано!' : 'Скопіювати'}
+              {copied ? 'Copied!' : 'Copy'}
             </button>
           </div>
         </>
       ) : (
-        <p className={styles.warning}>Будь ласка, підключіть ваш гаманець.</p>
+        <p className={styles.warning}>Please connect your wallet.</p>
       )}
     </div>
   );

@@ -51,13 +51,13 @@ export default function DonatePage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Підтримай користувача</h1>
+      <h1 className={styles.title}>Support user</h1>
 
-      <label className={styles.label}>Адреса отримувача:</label>
+      <label className={styles.label}>Address recipient :</label>
       <input
         className={styles.addressInput}
         type="text"
-        placeholder="Введіть адресу Solana"
+        placeholder="Enter Solana Address"
         value={recipientAddress}
         onChange={(e) => setRecipientAddress(e.target.value)}
       />
@@ -66,7 +66,7 @@ export default function DonatePage() {
       <input
         className={styles.input}
         type="number"
-        placeholder="Наприклад: 0.1"
+        placeholder="For example: 0.1"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
       />
@@ -76,7 +76,7 @@ export default function DonatePage() {
         onClick={handleSend}
         disabled={!recipientAddress || !amount}
       >
-        Надіслати донат
+        Donation
       </button>
 
       {status && <p className={styles.status}>{status}</p>}

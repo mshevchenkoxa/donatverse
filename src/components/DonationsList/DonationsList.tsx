@@ -33,7 +33,7 @@ const DonationsList: React.FC = () => {
 
   const handleMintNft = async (signature: string) => {
     
-    console.log(`Мінтимо NFT для транзакції: ${signature}`);
+    console.log(`Minting NFT for transaction: ${signature}`);
     
     setDonations((prev) =>
       prev.map((d) => (d.signature === signature ? { ...d, confirmed: true } : d))
@@ -42,21 +42,21 @@ const DonationsList: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Мої донати</h2>
-      {donations.length === 0 && <p>Немає донатів</p>}
+      <h2>My Donations</h2> 
+      {donations.length === 0 && <p>No donations</p>} 
       <ul className={styles.donationList}>
         {donations.map((donation, index) => (
           <li key={index} className={styles.donationItem}>
             <div>
-              <strong>Від:</strong> <span className={styles.textLight}>{donation.sender}</span><br />
-              <strong>Сума:</strong> <span className={styles.textLight}>{donation.amount} SOL</span>
+              <strong>From:</strong> <span className={styles.textLight}>{donation.sender}</span><br /> 
+              <strong>Amount:</strong> <span className={styles.textLight}>{donation.amount} SOL</span> 
             </div>
             {!donation.confirmed ? (
               <button className={styles.mintButton} onClick={() => handleMintNft(donation.signature)}>
-                Мінтити NFT
+                Mint NFT 
               </button>
             ) : (
-              <span className={styles.confirmed}>✅ Підтверджено</span>
+              <span className={styles.confirmed}>✅ Confirmed</span> 
             )}
           </li>
         ))}

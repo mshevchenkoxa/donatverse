@@ -14,19 +14,19 @@ const DashboardPage: React.FC = () => {
           className={activeTab === 'link' ? styles.active : styles.navButton}
           onClick={() => setActiveTab('link')}
         >
-          Отримати посилання
+          Get <link rel="stylesheet" href="" />
         </button>
         <button
           className={activeTab === 'donations' ? styles.active : styles.navButton}
           onClick={() => setActiveTab('donations')}
         >
-          Мої донати
+          My donation
         </button>
         <button
           className={activeTab === 'analytics' ? styles.active : styles.navButton}
           onClick={() => setActiveTab('analytics')}
         >
-          Аналітика
+          Analystic
         </button>
       </nav>
 

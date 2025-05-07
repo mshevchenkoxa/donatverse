@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { WalletContextProvider } from "../context/WalletContext";
 import "./globals.css"
+import SidebarNav from "@/components/SidebarNav/SidebarNav";
 
 export const metadata:Metadata = {
   title: "Donatverse",
@@ -10,8 +11,9 @@ export const metadata:Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="uk">
-      <body>
-        <WalletContextProvider>{children}</WalletContextProvider>
+      <body>      
+        <WalletContextProvider>
+        <SidebarNav />{children}</WalletContextProvider>
       </body>
     </html>
   );

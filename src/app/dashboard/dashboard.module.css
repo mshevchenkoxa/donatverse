@@ -1,11 +1,12 @@
 .dashboardContainer {
   padding: 2rem;
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #333, #222); 
+  
+  background: linear-gradient(to bottom right, #01040e, #0f172a);
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #f0f0f0; 
+  color: #e0f2fe; 
 }
 
 .dashboardNav {
@@ -18,30 +19,31 @@
 
 .navButton {
   padding: 0.75rem 1.5rem;
-  border: 1px solid #555; 
-  background-color: #444; 
+  border: 1px solid #60a5fa; 
+  background-color: #01040e; 
   border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 500;
-  color: #f0f0f0;
+  color: #f0f8ff; 
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .navButton:hover {
-  background-color: #666;
+  background-color: #01040e; 
 }
 
 .active {
-  background-color: #888; 
-  color: #222;
+  background-color: #a78bfa; 
+  color: #0f172a; 
 }
 
 .dashboardContent {
   width: 100%;
   max-width: 600px;
-  background-color: #2c2c2c; 
+  background-color: #01040e; 
   padding: 2rem;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); 
+  color: #e0f2fe; 
 }
