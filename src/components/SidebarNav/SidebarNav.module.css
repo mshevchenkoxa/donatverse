@@ -1,0 +1,45 @@
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background-color: #111827;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  .logo {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  
+  .navList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navItem {
+    display: block;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    color: #cbd5e1;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .navItem:hover {
+    background-color: #1f2937;
+    color: #fff;
+  }
+  
+  .active {
+    background-color: #10b981;
+    color: #fff;
+  }
+  
