@@ -1,49 +1,74 @@
 .dashboardContainer {
-  padding: 2rem;
+  padding: 2rem 0 2rem 2rem;
   min-height: 100vh;
-  
-  background: linear-gradient(to bottom right, #01040e, #0f172a);
+  background: linear-gradient(120deg, #181f2a 0%, #232b3e 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #e0f2fe; 
+  color: var(--foreground);
 }
 
 .dashboardNav {
   display: flex;
   gap: 1rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
 }
 
 .navButton {
+  background: none;
+  border: none;
   padding: 0.75rem 1.5rem;
-  border: 1px solid #60a5fa; 
-  background-color: #01040e; 
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  color: var(--muted);
   font-weight: 500;
-  color: #f0f8ff; 
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  border-radius: var(--radius);
+  transition: all 0.2s ease-in-out;
 }
 
 .navButton:hover {
-  background-color: #01040e; 
+  color: var(--foreground);
+  background: var(--secondary);
 }
 
 .active {
-  background-color: #a78bfa; 
-  color: #0f172a; 
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: all 0.2s ease-in-out;
+}
+
+.active:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
 }
 
 .dashboardContent {
-  width: 100%;
-  max-width: 600px;
-  background-color: #01040e; 
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
   padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); 
-  color: #e0f2fe; 
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  width: 100%;
+  max-width: 700px;
+}
+
+@media (max-width: 640px) {
+  .dashboardContainer {
+    padding: 1rem 0.5rem;
+  }
+  .dashboardNav {
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  .navButton, .active {
+    white-space: nowrap;
+  }
+  .dashboardContent {
+    padding: 1rem;
+  }
 }

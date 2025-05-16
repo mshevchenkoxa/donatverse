@@ -1,48 +1,83 @@
 .container {
-  text-align: center;
-  padding: 2rem; 
-  border-radius: 0.5rem; 
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
 }
 
 .title {
-  font-size: 1.75rem; 
+  color: var(--foreground);
+  font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  color: #dbeafe; 
 }
 
 .linkBox {
-  background-color: #1e3a8a; 
-  padding: 1.25rem;
-  border-radius: 0.75rem;
-  word-break: break-word;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1); 
-  margin-bottom: 1.5rem;
-  border: 1px solid #3b82f6; 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--secondary);
+  padding: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  gap: 1rem;
+  min-width: 0;
 }
 
 .link {
-  font-size: 1.1rem;
-  margin-bottom: 0.75rem;
-  color: #eff6ff; 
+  flex: 1 1 0%;
+  color: var(--muted);
+  font-family: 'Inter', monospace;
+  font-size: 0.875rem;
+  word-break: break-all;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .copyButton {
-  padding: 0.6rem 1.2rem;
-  background-color: #2563eb; 
+  background: var(--primary);
   color: white;
   border: none;
-  border-radius: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius);
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.3s ease-in-out; 
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .copyButton:hover {
-  background-color: #1d4ed8; 
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.copyButton:active {
+  transform: translateY(0);
 }
 
 .warning {
-  color: #fca5a5; 
-  font-weight: 500;
+  color: var(--muted);
+  font-size: 1rem;
+  text-align: center;
+  padding: 2rem;
+  background: var(--secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 640px) {
+  .linkBox {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  .link {
+    white-space: normal;
+    overflow-x: visible;
+  }
+  .copyButton {
+    width: 100%;
+  }
 }

@@ -1,0 +1,72 @@
+.walletContainer {
+  margin-top: auto;
+  padding: 1rem 0;
+}
+
+.walletButton {
+  width: 100%;
+  background: var(--primary) !important;
+  color: white !important;
+  border-radius: var(--radius) !important;
+  padding: 0.75rem 1rem !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease-in-out !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.walletButton:hover {
+  background: var(--primary-hover) !important;
+  transform: translateY(-1px);
+}
+
+.walletButton:active {
+  transform: translateY(0);
+}
+
+/* Override wallet adapter styles */
+.wallet-adapter-button {
+  background: var(--primary) !important;
+  color: white !important;
+  border-radius: var(--radius) !important;
+  padding: 0.75rem 1rem !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease-in-out !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.wallet-adapter-button:hover {
+  background: var(--primary-hover) !important;
+  transform: translateY(-1px);
+}
+
+.wallet-adapter-button:active {
+  transform: translateY(0);
+}
+
+.wallet-adapter-modal {
+  background: var(--card) !important;
+  border-radius: var(--radius) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.wallet-adapter-modal-title {
+  color: var(--foreground) !important;
+}
+
+.wallet-adapter-modal-list {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.wallet-adapter-modal-list .wallet-adapter-button {
+  background: var(--secondary) !important;
+  color: var(--foreground) !important;
+  margin: 0.5rem 0 !important;
+}
+
+.wallet-adapter-modal-list .wallet-adapter-button:hover {
+  background: var(--primary) !important;
+  color: white !important;
+} 

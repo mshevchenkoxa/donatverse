@@ -1,50 +1,103 @@
 'use client';
 
-import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from '@solana/web3.js';
+import { useConnection, useWallet, WalletContextState } from '@solana/wallet-adapter-react';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import {
+  PublicKey,
+  SystemProgram,
+  TransactionInstruction,
+  Transaction,
+  SendTransactionError,
+} from '@solana/web3.js';
+import { BN, AnchorProvider, Program, web3, Wallet } from '@coral-xyz/anchor';
+import idl from '@/idl/idl.json';
 import styles from './DonatePage.module.css';
+
+
+
+const PROGRAM_ID = new PublicKey('BJeRvtGt4WrWAu8GGz3FKJd7jbY4gnyqHwLRGxJQjw5J');
 
 export default function DonatePage() {
   const searchParams = useSearchParams();
   const initialRecipient = searchParams.get('wallet') || '';
   const { connection } = useConnection();
-  const { publicKey, sendTransaction } = useWallet();
-
+  const { publicKey, sendTransaction, signTransaction, signAllTransactions } = useWallet();
   const [recipientAddress, setRecipientAddress] = useState(initialRecipient);
   const [amount, setAmount] = useState('');
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    if (initialRecipient) {
-      setRecipientAddress(initialRecipient);
-    }
+    if (initialRecipient) setRecipientAddress(initialRecipient);
   }, [initialRecipient]);
 
   const handleSend = async () => {
     setStatus('');
-    if (!publicKey || !recipientAddress) {
-      setStatus('❌ Підключіть гаманець або вкажіть адресу отримувача.');
+    if (!recipientAddress || !amount) {
+      setStatus('❌ Перевірте адресу та суму.');
       return;
     }
 
-    try {
-      const recipientPubkey = new PublicKey(recipientAddress);
-      const lamports = parseFloat(amount) * LAMPORTS_PER_SOL;
+    if (!publicKey || !signTransaction || !signAllTransactions) {
+      setStatus('❌ Підключіть повноцінний гаманець, який підтримує підпис транзакцій');
+      return;
+    }
 
-      const transaction = new Transaction().add(
-        SystemProgram.transfer({
-          fromPubkey: publicKey,
-          toPubkey: recipientPubkey,
-          lamports,
-        })
+    const wallet = {
+      publicKey,
+      signTransaction,
+      signAllTransactions
+    };
+    try {
+      const donor = publicKey;
+      const donationId = Math.floor(Math.random() * 1_000_000_000);
+      const donationIdBN = new BN(donationId);
+      const recipient = new PublicKey(recipientAddress);
+      const lamports = parseFloat(amount) * web3.LAMPORTS_PER_SOL;
+      const amountBn = new BN(lamports);
+      const provider = new AnchorProvider(connection, wallet, {});
+
+      const program = new Program(idl as any, PROGRAM_ID, provider);
+
+      const donationIdBytes = new Uint8Array(8);
+      new DataView(donationIdBytes.buffer).setBigUint64(0, BigInt(donationId), true);
+      // Генерация PDA с правильными seed-ами
+      const [donationPda, bump] = PublicKey.findProgramAddressSync(
+        [
+          Buffer.from("donation"),
+          recipient.toBuffer(),
+          donationIdBN.toArray('le', 8), // Используем toArrayLike
+        ],
+        PROGRAM_ID
+      );
+      console.log("Bump used:", bump); // Должно быть 255
+
+      const [programAuthority] = PublicKey.findProgramAddressSync(
+        [Buffer.from('authority')],
+        PROGRAM_ID
       );
 
-      const signature = await sendTransaction(transaction, connection);
-      setStatus(`✅ Транзакція надіслана! Signature: ${signature}`);
+      console.log("Donation PDA:", donationPda.toBase58());
+      console.log("Recipient from input:", recipientAddress);
+      console.log("Recipient in seeds:", recipient.toBase58());
+      console.log("Donation ID:", donationIdBN.toString());
+      console.log("Program ID:", PROGRAM_ID.toBase58());
+
+      const tx = await program.methods
+        .initializeDonation(amountBn, donationIdBN)
+        .accounts({
+          donation: donationPda,
+          donor: donor,
+          recipient: recipient,
+          programAuthority,
+          systemProgram: SystemProgram.programId,
+        })
+        .rpc();
+
+
+      setStatus(`✅ Донат створено! Транзакція: ${tx}`);
     } catch (error: any) {
-      console.error(error);
+      console.error("Full error:", error);
       setStatus(`❌ Помилка: ${error?.message || 'невідома'}`);
     }
   };
@@ -83,3 +136,4 @@ export default function DonatePage() {
     </div>
   );
 }
+
