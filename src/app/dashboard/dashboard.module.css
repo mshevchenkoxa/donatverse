@@ -1,74 +1,79 @@
 .dashboardContainer {
-  padding: 2rem 0 2rem 2rem;
   min-height: 100vh;
-  background: linear-gradient(120deg, #181f2a 0%, #232b3e 100%);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  justify-content: flex-start;
   color: var(--foreground);
+  padding: 0;
 }
 
 .dashboardNav {
+  margin: 0 auto 2.5rem auto;
+  padding-top: 3rem;
+  width: 100%;
+  max-width: 700px;
   display: flex;
-  gap: 1rem;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 1rem;
+  justify-content: center;
 }
 
 .navButton {
-  background: none;
+  background: var(--muted-light);
   border: none;
-  padding: 0.75rem 1.5rem;
-  color: var(--muted);
+  padding: 0.7rem 2.2rem;
+  color: var(--secondary);
   font-weight: 500;
+  font-size: 1.08rem;
   cursor: pointer;
-  border-radius: var(--radius);
-  transition: all 0.2s ease-in-out;
+  border-radius: 1.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 1px 4px 0 rgba(30,41,59,0.06);
+  margin: 0 0.1rem;
 }
 
 .navButton:hover {
-  color: var(--foreground);
-  background: var(--secondary);
+  color: var(--primary);
+  background: #fff;
+  box-shadow: 0 2px 8px 0 rgba(59,130,246,0.08);
 }
 
 .active {
-  background: var(--primary);
-  color: white;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  color: #fff;
   border: none;
-  padding: 0.75rem 1.5rem;
-  font-weight: 500;
+  padding: 0.7rem 2.2rem;
+  font-weight: 600;
   cursor: pointer;
-  border-radius: var(--radius);
-  transition: all 0.2s ease-in-out;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 16px 0 rgba(59,130,246,0.12);
+  margin: 0 0.1rem;
+  transform: translateY(-2px);
 }
 
 .active:hover {
-  background: var(--primary-hover);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, var(--primary-hover), var(--accent));
+  color: #fff;
 }
 
 .dashboardContent {
-  background: var(--card);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  padding: 2rem;
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  margin: 0 auto;
   width: 100%;
   max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding-bottom: 3rem;
 }
 
 @media (max-width: 640px) {
-  .dashboardContainer {
-    padding: 1rem 0.5rem;
-  }
   .dashboardNav {
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
-  }
-  .navButton, .active {
-    white-space: nowrap;
+    padding-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
   .dashboardContent {
-    padding: 1rem;
+    padding: 0.5rem;
+    max-width: 100vw;
   }
 }

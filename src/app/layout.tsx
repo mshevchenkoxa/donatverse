@@ -13,12 +13,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="uk" className="h-full">
       <body className="min-h-screen bg-background antialiased">
         <WalletContextProvider>
-          <div className="flex min-h-screen">
+          <div style={{ display: 'flex', minHeight: '100vh' }}>
             <SidebarNav />
-            <main className="flex-1 p-6 md:p-8">
-              <div className="mx-auto max-w-7xl">
-                {children}
-              </div>
+            <main
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: '100vh',
+                padding: '2rem',
+              }}
+            >
+              <div style={{ width: '100%', maxWidth: 700 }}>{children}</div>
             </main>
           </div>
         </WalletContextProvider>

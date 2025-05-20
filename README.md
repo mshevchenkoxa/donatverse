@@ -14,7 +14,7 @@
 
 ---
 
-## ✨ The Vision
+##  The Vision
 
 We aim to build the most **transparent**, **engaging**, and **rewarding** donation ecosystem on the blockchain. Every SOL you send is logged immutably, and every act of giving becomes a piece of art — an NFT minted as proof of impact.
 

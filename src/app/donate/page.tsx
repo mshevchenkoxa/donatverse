@@ -61,16 +61,16 @@ export default function DonatePage() {
 
       const donationIdBytes = new Uint8Array(8);
       new DataView(donationIdBytes.buffer).setBigUint64(0, BigInt(donationId), true);
-      // Генерация PDA с правильными seed-ами
+      
       const [donationPda, bump] = PublicKey.findProgramAddressSync(
         [
           Buffer.from("donation"),
           recipient.toBuffer(),
-          donationIdBN.toArray('le', 8), // Используем toArrayLike
+          donationIdBN.toArray('le', 8), 
         ],
         PROGRAM_ID
       );
-      console.log("Bump used:", bump); // Должно быть 255
+      console.log("Bump used:", bump); 
 
       const [programAuthority] = PublicKey.findProgramAddressSync(
         [Buffer.from('authority')],
@@ -104,22 +104,27 @@ export default function DonatePage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Support user</h1>
+      <h1 className={styles.title}>Поддержать пользователя</h1>
 
-      <label className={styles.label}>Address recipient :</label>
+      <label className={styles.label} htmlFor="recipient">Адрес получателя</label>
       <input
+        id="recipient"
         className={styles.addressInput}
         type="text"
-        placeholder="Enter Solana Address"
+        autoComplete="off"
+        placeholder="Solana адрес, например: 7G..."
         value={recipientAddress}
         onChange={(e) => setRecipientAddress(e.target.value)}
       />
 
-      <label className={styles.label}>Сума в SOL:</label>
+      <label className={styles.label} htmlFor="amount">Сумма в SOL</label>
       <input
+        id="amount"
         className={styles.input}
         type="number"
-        placeholder="For example: 0.1"
+        min="0.001"
+        step="0.001"
+        placeholder="Например: 0.1"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
       />
@@ -129,7 +134,7 @@ export default function DonatePage() {
         onClick={handleSend}
         disabled={!recipientAddress || !amount}
       >
-        Donation
+        Отправить донат
       </button>
 
       {status && <p className={styles.status}>{status}</p>}
