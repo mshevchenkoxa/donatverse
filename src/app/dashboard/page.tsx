@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import GetLinkButton from '@/components/GetLinkButton/GetLinkButton';
 import styles from './dashboard.module.css';
 import DonationsList from '@/components/DonationsList/DonationsList';
+import Analytics from '@/components/Analytics/Analytics';
 
 type TabType = 'link' | 'donations' | 'analytics';
 
@@ -43,9 +44,7 @@ const DashboardPage: React.FC = () => {
       <div className={styles.dashboardContent}>
         {activeTab === 'link' && <GetLinkButton />}
         {activeTab === 'donations' && <DonationsList />}
-        {activeTab === 'analytics' && (
-          <div style={{textAlign: 'center', color: 'var(--muted)'}}>Аналитика скоро будет доступна.</div>
-        )}
+       {activeTab === 'analytics' && <Analytics />}
       </div>
     </div>
   );
