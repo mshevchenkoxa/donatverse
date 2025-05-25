@@ -1,5 +1,4 @@
 import Link from "next/link";
-import WalletConnection from "../components/WalletConnection";
 import styles from "./Home.module.css";
 
 export default function Home() {
@@ -16,8 +15,7 @@ export default function Home() {
       </section>
 
       <section id="donate" className={styles.card}>
-        <h2 className={styles.cardTitle}>Connect Your Wallet</h2>
-        <WalletConnection />
+        <h2 className={styles.cardTitle}>Connect Your Wallet</h2>        
       </section>
     </main>
   );

@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+#  DonatVerse — Decentralized Donation Universe
 
-## Getting Started
+**DonatVerse** is a cutting-edge decentralized donation platform built on [Solana](https://solana.com), where support becomes transparent, tokenized, and meaningful. It empowers creators, open-source developers, communities, and changemakers to receive donations in SOL — with every confirmed donation rewarded by a unique on-chain NFT.
 
-First, run the development server:
+---
+
+## 🚀 Live Features
+
+- 🔐 **Secure Donation Links** — Connect your Phantom wallet and receive a personal donation URL.
+- 💸 **On-chain Donations** — Donations are registered on Solana blockchain via Anchor smart contracts.
+- 🧾 **Proof of Support NFTs** — Donors receive a collectible NFT once the donation is confirmed.
+- 📊 **User Dashboard** — Manage donations, see analytics (WIP), and confirm NFT rewards.
+- 🌐 **Web3 Frontend** — Built with Next.js, Tailwind CSS, and Solana Wallet Adapter for a seamless dApp experience.
+
+---
+
+##  The Vision
+
+We aim to build the most **transparent**, **engaging**, and **rewarding** donation ecosystem on the blockchain. Every SOL you send is logged immutably, and every act of giving becomes a piece of art — an NFT minted as proof of impact.
+
+**DonatVerse is more than donations — it's social recognition on-chain.**
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js + Tailwind CSS
+- **Blockchain:** Solana + Anchor
+- **Smart Contracts:** Written in Rust
+- **Wallet Integration:** Phantom Wallet via Solana Wallet Adapter
+- **Token Program:** SPL Tokens for minting NFTs
+
+---
+
+## ⚙️ Local Setup (via Docker)
 
 ```bash
+git clone https://github.com/mshevchenkoxa/donatverse.git
+cd donatverse
+npm install 
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

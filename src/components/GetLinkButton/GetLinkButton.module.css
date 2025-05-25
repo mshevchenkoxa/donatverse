@@ -1,0 +1,133 @@
+.container {
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-glass);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px 0 rgba(59, 130, 246, 0.25), var(--shadow-glass);
+}
+
+.title {
+  color: var(--foreground);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.linkBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--secondary);
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  gap: 1rem;
+  min-width: 0;
+  transition: all 0.2s ease;
+}
+
+.linkBox:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 16px 0 rgba(59, 130, 246, 0.15);
+}
+
+.link {
+  flex: 1 1 0%;
+  color: var(--muted);
+  font-family: 'Inter', monospace;
+  font-size: 1rem;
+  word-break: break-all;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0.5rem;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: calc(var(--radius) / 2);
+  border: 1px solid var(--border);
+}
+
+.copyButton {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px 0 rgba(59, 130, 246, 0.15);
+}
+
+.copyButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px 0 rgba(59, 130, 246, 0.35);
+}
+
+.copyButton:active {
+  transform: translateY(0);
+}
+
+.warning {
+  color: var(--muted);
+  font-size: 1.125rem;
+  text-align: center;
+  padding: 2rem;
+  background: var(--secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.warning::before {
+  content: "⚠️";
+  font-size: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .linkBox {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .link {
+    white-space: normal;
+    overflow-x: visible;
+    font-size: 0.875rem;
+  }
+
+  .copyButton {
+    width: 100%;
+    text-align: center;
+  }
+
+  .warning {
+    font-size: 1rem;
+    padding: 1.5rem;
+  }
+}
