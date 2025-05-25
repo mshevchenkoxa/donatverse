@@ -1,49 +1,79 @@
 .dashboardContainer {
-  padding: 2rem;
   min-height: 100vh;
-  
-  background: linear-gradient(to bottom right, #01040e, #0f172a);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  color: #e0f2fe; 
+  align-items: stretch;
+  justify-content: flex-start;
+  color: var(--foreground);
+  padding: 0;
 }
 
 .dashboardNav {
+  margin: 0 auto 2.5rem auto;
+  padding-top: 3rem;
+  width: 100%;
+  max-width: 700px;
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
   justify-content: center;
 }
 
 .navButton {
-  padding: 0.75rem 1.5rem;
-  border: 1px solid #60a5fa; 
-  background-color: #01040e; 
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  background: var(--muted-light);
+  border: none;
+  padding: 0.7rem 2.2rem;
+  color: var(--secondary);
   font-weight: 500;
-  color: #f0f8ff; 
+  font-size: 1.08rem;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  border-radius: 1.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 1px 4px 0 rgba(30,41,59,0.06);
+  margin: 0 0.1rem;
 }
 
 .navButton:hover {
-  background-color: #01040e; 
+  color: var(--primary);
+  background: #fff;
+  box-shadow: 0 2px 8px 0 rgba(59,130,246,0.08);
 }
 
 .active {
-  background-color: #a78bfa; 
-  color: #0f172a; 
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  color: #fff;
+  border: none;
+  padding: 0.7rem 2.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 16px 0 rgba(59,130,246,0.12);
+  margin: 0 0.1rem;
+  transform: translateY(-2px);
+}
+
+.active:hover {
+  background: linear-gradient(135deg, var(--primary-hover), var(--accent));
+  color: #fff;
 }
 
 .dashboardContent {
+  margin: 0 auto;
   width: 100%;
-  max-width: 600px;
-  background-color: #01040e; 
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); 
-  color: #e0f2fe; 
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding-bottom: 3rem;
+}
+
+@media (max-width: 640px) {
+  .dashboardNav {
+    padding-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .dashboardContent {
+    padding: 0.5rem;
+    max-width: 100vw;
+  }
 }

@@ -1,4 +1,4 @@
-# DonatVerse — Decentralized Donation Universe
+#  DonatVerse — Decentralized Donation Universe
 
 **DonatVerse** is a cutting-edge decentralized donation platform built on [Solana](https://solana.com), where support becomes transparent, tokenized, and meaningful. It empowers creators, open-source developers, communities, and changemakers to receive donations in SOL — with every confirmed donation rewarded by a unique on-chain NFT.
 
@@ -14,7 +14,7 @@
 
 ---
 
-## ✨ The Vision
+##  The Vision
 
 We aim to build the most **transparent**, **engaging**, and **rewarding** donation ecosystem on the blockchain. Every SOL you send is logged immutably, and every act of giving becomes a piece of art — an NFT minted as proof of impact.
 
