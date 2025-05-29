@@ -8,7 +8,8 @@ import WalletConnection from '../WalletConnection';
 const navItems = [
   { label: 'Main', href: '/' },
   { label: 'Dashboard', href: '/dashboard?tab=link' },
-  { label: 'Donation', href: '/donate' },  
+  { label: 'Donation', href: '/donate' },
+  { label: 'Popular', href: '/popular' },
 ];
 
 const SidebarNav: React.FC = () => {
