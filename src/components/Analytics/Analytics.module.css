@@ -67,6 +67,19 @@
   border: 1px solid var(--border);
   padding: 1.5rem;
   margin-bottom: 2rem;
+  transition: all 0.2s ease;
+}
+
+.chartContainer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px 0 rgba(59, 130, 246, 0.15);
+  border-color: var(--primary);
+}
+
+.chartWrapper {
+  height: 300px;
+  width: 100%;
+  position: relative;
 }
 
 .chartTitle {
@@ -74,6 +87,20 @@
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 1rem;
+}
+
+.recentDonations {
+  background: var(--secondary);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.recentDonations:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px 0 rgba(59, 130, 246, 0.15);
+  border-color: var(--primary);
 }
 
 .donationsTable {

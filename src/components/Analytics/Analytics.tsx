@@ -1,6 +1,31 @@
 'use client';
 import React from 'react';
 import styles from './Analytics.module.css';
+import { Line, Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);
 
 const Analytics: React.FC = () => {
   
@@ -29,6 +54,74 @@ const Analytics: React.FC = () => {
     { day: 'Sun', amount: 0.9 },
   ];
 
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        padding: 12,
+        titleColor: '#fff',
+        bodyColor: '#fff',
+        borderColor: 'rgba(255, 255, 255, 0.1)',
+        borderWidth: 1,
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)',
+        },
+        ticks: {
+          color: 'var(--muted)',
+        },
+      },
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          color: 'var(--muted)',
+        },
+      },
+    },
+  };
+
+  const lineChartData = {
+    labels: chartData.map(data => data.day),
+    datasets: [
+      {
+        data: chartData.map(data => data.amount),
+        borderColor: 'var(--primary)',
+        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+        fill: true,
+        tension: 0.4,
+        borderWidth: 2,
+        pointBackgroundColor: 'var(--primary)',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+      },
+    ],
+  };
+
+  const barChartData = {
+    labels: chartData.map(data => data.day),
+    datasets: [
+      {
+        data: chartData.map(data => data.amount),
+        backgroundColor: 'rgba(59, 130, 246, 0.8)',
+        borderRadius: 4,
+        borderSkipped: false,
+      },
+    ],
+  };
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Donation Analytics</h2>
@@ -43,39 +136,20 @@ const Analytics: React.FC = () => {
       </div>
 
       <div className={styles.chartContainer}>
-        <div className={styles.chartTitle}>Donations Last 7 Days</div>
-        <div style={{ height: '200px', display: 'flex', alignItems: 'flex-end', gap: '10px' }}>
-          {chartData.map((data, index) => (
-            <div 
-              key={index}
-              style={{
-                flex: 1,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <div
-                style={{
-                  width: '100%',
-                  height: `${(data.amount / 2) * 100}%`,
-                  background: 'linear-gradient(135deg, var(--gradient-start), var(--gradient-end))',
-                  borderRadius: '4px',
-                  transition: 'height 0.3s ease',
-                }}
-              />
-              <div style={{ marginTop: '8px', color: 'var(--muted)', fontSize: '0.875rem' }}>
-                {data.day}
-              </div>
-              <div style={{ color: 'var(--foreground)', fontSize: '0.75rem', fontWeight: '600' }}>
-                {data.amount} SOL
-              </div>
-            </div>
-          ))}
+        <div className={styles.chartTitle}>Donations Trend (Last 7 Days)</div>
+        <div className={styles.chartWrapper}>
+          <Line data={lineChartData} options={chartOptions} />
         </div>
       </div>
 
-      <div>
+      <div className={styles.chartContainer}>
+        <div className={styles.chartTitle}>Daily Donation Volume</div>
+        <div className={styles.chartWrapper}>
+          <Bar data={barChartData} options={chartOptions} />
+        </div>
+      </div>
+
+      <div className={styles.recentDonations}>
         <h3 className={styles.chartTitle}>Recent Donations</h3>
         <table className={styles.donationsTable}>
           <thead>

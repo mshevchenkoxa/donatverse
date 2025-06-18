@@ -1,6 +1,27 @@
 'use client';
 import React from 'react';
 import styles from './page.module.css';
+import { Pie, Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement
+);
 
 const mockPopularAddresses = [
   {
@@ -45,6 +66,90 @@ const mockPopularAddresses = [
   }
 ];
 
+const categoryData = {
+  labels: ['Education', 'Research', 'Art', 'DeFi', 'Gaming'],
+  datasets: [
+    {
+      data: [15.8, 12.3, 8.5, 20.1, 9.7],
+      backgroundColor: [
+        'rgba(59, 130, 246, 0.8)',
+        'rgba(16, 185, 129, 0.8)',
+        'rgba(245, 158, 11, 0.8)',
+        'rgba(139, 92, 246, 0.8)',
+        'rgba(239, 68, 68, 0.8)',
+      ],
+      borderColor: [
+        'rgba(59, 130, 246, 1)',
+        'rgba(16, 185, 129, 1)',
+        'rgba(245, 158, 11, 1)',
+        'rgba(139, 92, 246, 1)',
+        'rgba(239, 68, 68, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
+
+const topDonorsData = {
+  labels: ['Donor 1', 'Donor 2', 'Donor 3', 'Donor 4', 'Donor 5'],
+  datasets: [
+    {
+      label: 'Donation Amount (SOL)',
+      data: [5.2, 4.8, 3.9, 3.5, 3.1],
+      backgroundColor: 'rgba(59, 130, 246, 0.8)',
+      borderRadius: 4,
+    },
+  ],
+};
+
+const chartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: 'bottom' as const,
+      labels: {
+        color: 'var(--muted)',
+        padding: 20,
+        font: {
+          size: 12,
+        },
+      },
+    },
+    tooltip: {
+      backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      padding: 12,
+      titleColor: '#fff',
+      bodyColor: '#fff',
+      borderColor: 'rgba(255, 255, 255, 0.1)',
+      borderWidth: 1,
+    },
+  },
+};
+
+const barChartOptions = {
+  ...chartOptions,
+  scales: {
+    y: {
+      beginAtZero: true,
+      grid: {
+        color: 'rgba(255, 255, 255, 0.1)',
+      },
+      ticks: {
+        color: 'var(--muted)',
+      },
+    },
+    x: {
+      grid: {
+        display: false,
+      },
+      ticks: {
+        color: 'var(--muted)',
+      },
+    },
+  },
+};
+
 export default function PopularPage() {
   return (
     <div className={styles.container}>
@@ -62,6 +167,21 @@ export default function PopularPage() {
         <div className={styles.statCard}>
           <div className={styles.statValue}>5</div>
           <div className={styles.statLabel}>Featured Projects</div>
+        </div>
+      </div>
+
+      <div className={styles.chartsContainer}>
+        <div className={styles.chartCard}>
+          <h3 className={styles.chartTitle}>Donations by Category</h3>
+          <div className={styles.chartWrapper}>
+            <Pie data={categoryData} options={chartOptions} />
+          </div>
+        </div>
+        <div className={styles.chartCard}>
+          <h3 className={styles.chartTitle}>Top Donors</h3>
+          <div className={styles.chartWrapper}>
+            <Bar data={topDonorsData} options={barChartOptions} />
+          </div>
         </div>
       </div>
 
