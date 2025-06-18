@@ -13,10 +13,7 @@ export default function Home() {
           No middlemen. No hidden fees. Just support.
         </p>        
       </section>
-
-      <section id="donate" className={styles.card}>
-        <h2 className={styles.cardTitle}>Connect Your Wallet</h2>        
-      </section>
+      
     </main>
   );
 }
