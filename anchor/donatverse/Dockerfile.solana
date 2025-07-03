@@ -1,0 +1,23 @@
+# Вибираємо офіційний образ Ubuntu 22.04
+FROM ubuntu:22.04
+
+# Оновлюємо репозиторії та встановлюємо необхідні бібліотеки
+RUN apt-get update && apt-get install -y \
+    libc6 \
+    libstdc++6 \
+    curl \
+    git \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Завантажуємо та встановлюємо Solana
+RUN curl -sSfL https://release.solana.com/v1.17.0/install | sh
+
+# Додаємо Solana в PATH
+ENV PATH="/root/.local/share/solana/install/active_release/bin:${PATH}"
+
+# Порт, який використовуватимемо для Solana
+EXPOSE 8899
+
+# Команда для запуску Solana Test Validator
+CMD ["solana-test-validator", "-q"]

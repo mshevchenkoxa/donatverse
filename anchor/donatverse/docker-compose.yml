@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  solana:
+    build:
+      context: .
+      dockerfile: Dockerfile.solana
+    command: solana-test-validator -q
+    ports:
+      - "8899:8899"
+      - "8900:8900"
+    volumes:
+      - solana-data:/root/.config/solana
+
+  anchor:
+    build: .
+    depends_on:
+      - solana
+    volumes:
+      - .:/project
+    working_dir: /project
+    environment:
+      - ANCHOR_PROVIDER_URL=http://solana:8899
+      - SOLANA_CONFIG_PATH=/project/solana-config/config.yml
+    command: bash
+
+volumes:
+  solana-data:
